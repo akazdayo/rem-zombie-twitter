@@ -1,5 +1,6 @@
 const spamText = ".";
 const newElement = document.createElement("div");
+let readedTweet = 0;
 newElement.innerHTML = '<p>スパムツイートを見つけました</p>';
 
 
@@ -26,18 +27,19 @@ function main(e) {
             const allTweet = getAllTweet();
             //clearInterval(jsInitCheckTimer); 一旦コメントアウト
             // 取得した要素のテキスト内容をすべて表示
-            for (let i = 0; i < elements.length; i++) {
+            for (let i = readedTweet; i < elements.length; i++) {
                 console.log("elements: ", elements[i].textContent);
                 if (elements[i].textContent.includes(spamText)) {
                     console.log("スパムツイートを見つけました");
                     // ツイートを削除
-                    allTweet.removeChild(allTweet.childNodes[i]);
+                    //allTweet.removeChild(allTweet.childNodes[i]);
                     //allTweet.replaceChild(newElement, allTweet.childNodes[i]);
 
-                    //elements[i].parentNode.removeChild(elements[i]);]
+                    elements[i].parentNode.removeChild(elements[i]);
                     //elements[i].parentNode.replaceChild(newElement, elements[i]);
                 }
             }
+            readedTweet = elements.length;
         }
     };
 }
