@@ -17,20 +17,19 @@ class Detect {
 
 	deleteTweet() {
 		const tweets = document.querySelectorAll('[data-testid="tweetText"]');
+		const tweetBorders = document.querySelectorAll(
+			'[data-testid="cellInnerDiv"]',
+		);
 
 		for (let i = 0; i < tweets.length; i++) {
 			if (this.checkTweet(tweets[i]) === true) {
-				console.log("ツイートを削除しました");
 				tweets[i].parentNode.removeChild(tweets[i]);
 			}
 		}
-		//this.readedTweet = tweets.length;
-		console.log(tweets);
-		console.log(tweets.length, "個のツイートを精査しました。");
 	}
 
 	start() {
-		setInterval(this.deleteTweet, 500);
+		setInterval(this.deleteTweet, 1500);
 	}
 }
 
