@@ -8,7 +8,7 @@ class Detect {
 	}
 
 	checkTweet(tweet) {
-		if (tweet.textContent.includes(this.spamText)) {
+		if (tweet.innerText.includes(this.spamText)) {
 			console.log(tweet.textContent);
 			return true;
 		}
@@ -16,14 +16,24 @@ class Detect {
 	}
 
 	deleteTweet() {
-		const tweets = document.querySelectorAll('[data-testid="tweetText"]');
+		//const tweets = document.querySelectorAll('[data-testid="tweetText"]');
 		const tweetBorders = document.querySelectorAll(
 			'[data-testid="cellInnerDiv"]',
 		);
 
-		for (let i = 0; i < tweets.length; i++) {
-			if (this.checkTweet(tweets[i]) === true) {
-				tweets[i].parentNode.removeChild(tweets[i]);
+		for (let i = 0; i < tweetBorders.length; i++) {
+			let nowTweet;
+			try {
+				nowTweet =
+					tweetBorders[i].children[0].children[0].children[0].children[0]
+						.children[0].children[1].children[1].children[1].children[0];
+			} catch (e) {
+				continue;
+			}
+
+			if (this.checkTweet(nowTweet) === true) {
+				//nowTweet[i].parentNode.removeChild(nowTweet[i]);
+				tweetBorders[i].parentNode.removeChild(tweetBorders[i]);
 			}
 		}
 	}
