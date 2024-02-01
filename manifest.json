@@ -1,7 +1,7 @@
 {
     "name": "Name of Extension",
     "version": "1.0",
-    "manifest_version": 2,
+    "manifest_version": 3,
     "description": "説明",
     "content_scripts": [
       {
